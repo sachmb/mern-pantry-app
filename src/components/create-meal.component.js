@@ -82,63 +82,65 @@ export default class CreateMeal extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Create Meal</h3>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label>Meal Name: </label>
-            <input type="text"
-              required
-              className="form-control"
-              value={this.state.mealName}
-              onChange={this.onChangemealName}
-            />
-          </div>
-          <div className="form-group">
-            <label>Ingredients: {this.state.ingredients.ingredient}
-              {
-                this.state.ingredients.map(function (ing) {
-                  return <button className="btn link" key={ing} onClick={(e) => e.preventDefault()}> {ing} </button>
+      <div className="row  justify-content-center">
+        <div className="col-xs-8 col-md-6 col-lg-6">
+          <h3>Create Meal</h3>
+          <form onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label>Meal Name: </label>
+              <input type="text"
+                required
+                className="form-control"
+                value={this.state.mealName}
+                onChange={this.onChangemealName}
+              />
+            </div>
+            <div className="form-group">
+              <label>Ingredients: {this.state.ingredients.ingredient}
+                {
+                  this.state.ingredients.map(function (ing) {
+                    return <button className="btn link" key={ing} onClick={(e) => e.preventDefault()}> {ing} </button>
 
-                })
-              }
-            </label>
-            <select ref="userInput"
-              required
-              className="form-control"
-              value={this.state.ingredientsInstance}
-              onChange={this.onChangeIngredients}>
-              {
-                this.state.allIngredients.map(function (user) {
-                  return <option
-                    key={user._id}
-                    value={user.ingredient}>{user.ingredient}
-                  </option>;
-                })
-              }
-            </select>
-          </div>
-          <button
-            className="btn btn-secondary"
-            onClick={this.onAddItem}
-            disabled={!this.state.ingredientsInstance}
-          >
-            Add ingredient to meal
+                  })
+                }
+              </label>
+              <select ref="userInput"
+                required
+                className="form-control"
+                value={this.state.ingredientsInstance}
+                onChange={this.onChangeIngredients}>
+                {
+                  this.state.allIngredients.map(function (user) {
+                    return <option
+                      key={user._id}
+                      value={user.ingredient}>{user.ingredient}
+                    </option>;
+                  })
+                }
+              </select>
+            </div>
+            <button
+              className="btn btn-secondary"
+              onClick={this.onAddItem}
+              disabled={!this.state.ingredientsInstance}
+            >
+              Add ingredient to meal
           </button>
-          <div className="form-group">
-            <label>Image URL: </label>
-            <input
-              type="text"
-              className="form-control"
-              value={this.state.imageURL}
-              onChange={this.onChangeImageURL}
-            />
+            <div className="form-group">
+              <label>Image URL: </label>
+              <input
+                type="text"
+                className="form-control"
+                value={this.state.imageURL}
+                onChange={this.onChangeImageURL}
+              />
 
-          </div>
-          <div className="form-group">
-            <input type="submit" value="Add Meal" className="btn btn-primary" />
-          </div>
-        </form>
+            </div>
+            <div className="form-group">
+              <input type="submit" value="Add Meal" className="btn btn-primary" />
+            </div>
+          </form>
+        </div>
       </div>
     )
   }

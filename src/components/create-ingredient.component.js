@@ -51,25 +51,26 @@ export default class CreateIngredient extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Add Ingredients</h3>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label>Ingredient: </label>
-            <input type="text"
-              required
-              className="form-control"
-              value={this.state.ingredient}
-              onChange={this.onChangeIngredient}
-            />
-          </div>
-          <div className="form-group">
-            <input type="submit" value="Add Ingredient" className="btn btn-primary" />
-          </div>
-        </form>
-        {/* <div style={this.state.switch}>{this.state.ingredient} Already Exist on Database</div> */}
-      </div >
-      
+      <div className="row  justify-content-center">
+        <div className="col-xs-12 col-lg-12">
+          <h3>Add Ingredients</h3>
+          <form onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label>Ingredient: </label>
+              <input type="text"
+                required
+                className="form-control"
+                value={this.state.ingredient}
+                onChange={this.onChangeIngredient}
+              />
+            </div>
+            <div className="form-group">
+              <input type="submit" value="Add Ingredient" className="btn btn-primary" />
+            </div>
+          </form>
+          {/* <div style={this.state.switch}>{this.state.ingredient} Already Exist on Database</div> */}
+        </div >
+      </div>
     )
   }
 }

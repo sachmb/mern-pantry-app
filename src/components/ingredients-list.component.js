@@ -36,10 +36,10 @@ export default class IngredientsList extends Component {
   render() {
     return (
         <div className="row">
-          <div className="col-md-4">
+          <div className="col-xs-12 col-md-4 col-lg-4">
             <CreateIngredient />
           </div>
-          <div className="col-md-8">
+          <div className="col-xs-12 col-md-8 col-lg-8">
             <h3>Ingredients</h3>
             <table className="table">
               <thead className="thead-light">
