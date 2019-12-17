@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Adding .env file
+Add .env file in backend folder with mongodb connection information
+ATLAS_URI=mongodb.................mongodb.net/test?retryWrites=true&w=majority
+
+
 ## Available Scripts
 
 In the project directory, you can run:
