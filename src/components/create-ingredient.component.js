@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Error from '../elements/Error'
 
 export default class CreateIngredient extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ export default class CreateIngredient extends Component {
     this.state = {
       ingredient: '',
       ingredients: [],
-      // switch: 'visibility:hidden',
+      error: false,
     }
   }
 
@@ -30,24 +31,44 @@ export default class CreateIngredient extends Component {
 
 
   onSubmit = e => {
-    e.preventDefault()
+    e.preventDefault();
     const ingre = {
       ingredient: this.state.ingredient,
     }
 
     console.log(ingre);
 
-    this.state.ingredients.includes(this.state.ingredient) ? alert('already exist') : axios.post('http://localhost:5000/ingredients/add', ingre)
+    this.state.ingredients.includes(this.state.ingredient) ? this.setState({ error: true }) : (axios.post('http://localhost:5000/ingredients/add', ingre)
       .then(res => console.log(res.data))
       .catch(error => {
         console.log(error.response)
-      });
+      }));
 
 
     this.setState({
       ingredient: ''
     })
   }
+
+  handleOnBlur = async e => {
+    this.setState({
+      ingredient: e.target.value
+    });
+    const data = {
+      ingredient: this.state.ingredient
+    };
+    const checkIngredient = await axios.post('http://localhost:5000/ingredients/check', data)
+      .then(exist => exist.status)
+      .catch(error => {
+        console.log(error.response)
+      })
+
+    checkIngredient === 204
+      ? this.setState({ error: true })
+      : this.setState({ error: false });
+
+  }
+
 
   render() {
     return (
@@ -62,13 +83,15 @@ export default class CreateIngredient extends Component {
                 className="form-control"
                 value={this.state.ingredient}
                 onChange={this.onChangeIngredient}
+                onBlur={this.handleOnBlur}
               />
             </div>
             <div className="form-group">
-              <input type="submit" value="Add Ingredient" className="btn btn-primary" />
+              <input type="submit" value="Add Ingredient" className="btn btn-primary" disabled={this.state.error} />
             </div>
           </form>
           {/* <div style={this.state.switch}>{this.state.ingredient} Already Exist on Database</div> */}
+          {this.state.error && <Error message="Ingredient exist in database" />}
         </div >
       </div>
     )

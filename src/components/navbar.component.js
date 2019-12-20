@@ -18,10 +18,8 @@ export default class Navbar extends Component {
 
   render() {
     const collapsed = this.state.collapsed;
-    // const classOne = collapsed ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
-    // const classTwo = collapsed ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
     const classOne = collapsed ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
-    const classTwo = collapsed ? 'navbar-toggler collapsed' : 'navbar-toggler';
+    const classTwo = collapsed ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
     return (
       <nav className="navbar navbar-dark bg-dark navbar-expand-lg" >
         <NavLink to="/" className="navbar-brand">PantryApp</NavLink>
@@ -43,12 +41,14 @@ export default class Navbar extends Component {
             <li className="nav-item">
               <NavLink to="/createIngredient" className="nav-link" onClick={this.toggleNavbar}>Create Ingredient</NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink to="/registration" className="nav-link" onClick={this.toggleNavbar}>Register</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/login" className="nav-link" onClick={this.toggleNavbar}>Login</NavLink>
+            </li>
           </ul>
         </div>
-
-
-
-
       </nav>
     );
   }
