@@ -17,7 +17,8 @@ export default class Registration extends Component {
       user_name: '',
       password: '',
       register: false,
-      error: false
+      error: false,
+      user_name_taken: false,
     };
   }
 
@@ -35,7 +36,8 @@ export default class Registration extends Component {
 
   handleOnChangeUserName = e => {
     this.setState({
-      user_name: e.target.value
+      user_name: e.target.value,
+      error: false,
     });
   }
 
@@ -55,7 +57,7 @@ export default class Registration extends Component {
     const isUsernameTaken = await UsernameValidation(data);
 
     isUsernameTaken === 204
-      ? this.setState({ user_name_taken: true })
+      ? this.setState({ user_name_taken: true, error: true, })
       : this.setState({ user_name_taken: false });
 
   }
